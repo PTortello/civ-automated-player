@@ -2,14 +2,12 @@ import { useEffect, useState } from 'react';
 import * as S from './styles';
 import leaders from "../../constants/leaders";
 
-const cardEra = [[10, 0], [10, 0], [10, 0], [10, 0], [10, 0]];
-
 function GamePage({changePage, leader}: any) {
-  const [cardNumber, setCardNumber] = useState(cardEra);
+  const [cardNumber, setCardNumber] = useState([[10, 0], [10, 0], [10, 0], [10, 0], [10, 0]]);
   const [showModal, setShowModal] = useState(0);
 
   const getImage = (img: number) => {
-   return require("../../images/card"+img+".webp");
+    return require("../../images/card"+img+".webp");
   }
 
   const minusTrade = (key: number) => {
@@ -47,7 +45,7 @@ function GamePage({changePage, leader}: any) {
   useEffect(() => {
     let tempCardNumber = [...cardNumber];
     for (let i = 0; i < 5; i++) {
-      tempCardNumber[i][0] = cardEra[i][0] + leaders[leader].focus[i];
+      tempCardNumber[i][0] += leaders[leader].focus[i];
     }
     setCardNumber(tempCardNumber);
   }, [])
@@ -68,7 +66,7 @@ function GamePage({changePage, leader}: any) {
           </S.Focus>
           {cardNumber.map((value, key) => {
             return (
-              <S.Container>
+              <S.Container key={key}>
                 <S.Bottom>
                   <S.Item onClick={() => minusTrade(key)}>-</S.Item>
                   <S.Item>{value[1]}</S.Item>
