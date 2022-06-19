@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/civ-automated-player/static/css/main.17a22469.css",
-    "main.js": "/civ-automated-player/static/js/main.77a347ec.js",
+    "main.js": "/civ-automated-player/static/js/main.4caffd4a.js",
     "static/media/card42.webp": "/civ-automated-player/static/media/card42.32024dac4097974fd374.webp",
     "static/media/card32.webp": "/civ-automated-player/static/media/card32.114a01f40246f7eb155e.webp",
     "static/media/card22.webp": "/civ-automated-player/static/media/card22.a65fd7a4522295f9f078.webp",
@@ -25,10 +25,10 @@
     "static/media/focus.webp": "/civ-automated-player/static/media/focus.1c492c65605ac42116db.webp",
     "index.html": "/civ-automated-player/index.html",
     "main.17a22469.css.map": "/civ-automated-player/static/css/main.17a22469.css.map",
-    "main.77a347ec.js.map": "/civ-automated-player/static/js/main.77a347ec.js.map"
+    "main.4caffd4a.js.map": "/civ-automated-player/static/js/main.4caffd4a.js.map"
   },
   "entrypoints": [
     "static/css/main.17a22469.css",
-    "static/js/main.77a347ec.js"
+    "static/js/main.4caffd4a.js"
   ]
 }
