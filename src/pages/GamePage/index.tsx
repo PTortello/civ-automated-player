@@ -5,6 +5,12 @@ import leaders from "../../constants/leaders";
 function GamePage({changePage, leader}: any) {
   const [cardNumber, setCardNumber] = useState([[10, 0], [10, 0], [10, 0], [10, 0], [10, 0]]);
   const [showModal, setShowModal] = useState(0);
+  const [loaded, setLoaded] = useState(false);
+
+  const newGame = () => {
+    localStorage.clear();
+    changePage(-1);
+  }
 
   const getImage = (img: number) => {
     return require("../../images/card"+img+".webp");
@@ -43,11 +49,26 @@ function GamePage({changePage, leader}: any) {
   }
 
   useEffect(() => {
-    let tempCardNumber = [...cardNumber];
-    for (let i = 0; i < 5; i++) {
-      tempCardNumber[i][0] += leaders[leader].focus[i];
+    loaded && localStorage.setItem("civgame", JSON.stringify(cardNumber));
+  }, [cardNumber])
+
+  useEffect(() => {
+    const checkCivGame = () => {
+      const hasCivGame = localStorage.getItem("civgame");
+      if (hasCivGame) {
+        const civgame = JSON.parse(hasCivGame);
+        setCardNumber(civgame);
+      } else {
+        localStorage.setItem("leader", leader);
+        let tempCardNumber = [...cardNumber];
+        for (let i = 0; i < 5; i++) {
+          tempCardNumber[i][0] += leaders[leader].focus[i];
+        }
+        setCardNumber(tempCardNumber);
+      }
+      setLoaded(true);
     }
-    setCardNumber(tempCardNumber);
+    checkCivGame();
   }, [])
 
   return (
@@ -58,7 +79,7 @@ function GamePage({changePage, leader}: any) {
         </S.Modal>
       :
         <>
-          <S.Back onClick={() => changePage(-1)}>Voltar</S.Back>
+          <S.Back onClick={() => newGame()}>Novo</S.Back>
           <S.Round onClick={() => nextRound()}>Turno</S.Round>
           <S.Title>{ leaders[leader].civ }</S.Title>
           <S.Focus>
